@@ -1,0 +1,46 @@
+{
+  "moduleInfo": {
+    "moduleName": "NatoManga",
+    "moduleDesc": "Unofficial module to read manga from natomanga.com",
+    "developer": "qtWxlfii",
+    "moduleID": "natomanga001",
+    "moduleImage": "https://www.natomanga.com/favicon.ico",
+    "moduleVersion": 1.0,
+    "moduleLenguage": "ENG",
+    "moduleType": "Manga",
+    "baseURL": "https://www.natomanga.com"
+  },
+  "mainPage": [
+    {
+      "request": {
+        "url": "https://www.natomanga.com/",
+        "method": "get",
+        "headers": []
+      },
+      "javascriptConfig": {
+        "removeJavascript": true,
+        "loadInWebView": false,
+        "javaScript": "try {          const savedData = document.getElementById('ketsu-final-data');          const parsedJson = JSON.parse(savedData.innerHTML);          const items = document.querySelectorAll('.slide .item');          const empty = [{ key: '', value: '' }];          const data = [];          items.forEach(item => {            const img = item.querySelector('img')?.src;            const titleEl = item.querySelector('.slide-caption h3 a');            const title = titleEl?.innerText?.trim();            const link = titleEl?.href;            if (title && img && link) {              data.push({                image: { url: img, method: 'get', headers: empty, httpBody: null },                title: title,                link: { url: link, method: 'get', headers: empty, httpBody: null },                description: '', field1: '', field2: '', field3: '', field4: '', isChapter: false              });            }          });          const output = [{            cellDesing: 'normal1',            orientation: 'vertical',            defaultLayout: 'wide',            paging: '',            section: { sectionName: 'Popular Manga', separator: true },            layout: null,            data: data          }];          savedData.innerHTML = JSON.stringify(output);        } catch(e) { console.log(e); }"
+      },
+      "output": []
+    }
+  ],
+  "search": [
+    {
+      "request": {
+        "url": "https://www.natomanga.com/search?keyword=<searched>",
+        "method": "get",
+        "headers": []
+      },
+      "separator": "+",
+      "javascriptConfig": {
+        "removeJavascript": true,
+        "loadInWebView": false,
+        "javaScript": "try {          const savedData = document.getElementById('ketsu-final-data');          const parsedJson = JSON.parse(savedData.innerHTML);          const items = document.querySelectorAll('.panel-search-story .story_item');          const empty = [{ key: '', value: '' }];          const data = [];          items.forEach(item => {            const img = item.querySelector('img')?.src;            const titleEl = item.querySelector('.story_name a');            const title = titleEl?.innerText?.trim();            const link = titleEl?.href;            if (title && img && link) {              data.push({                image: { url: img, method: 'get', headers: empty, httpBody: null },                title: title,                link: { url: link, method: 'get', headers: empty, httpBody: null },                description: '', field1: '', field2: '', field3: '', field4: '', isChapter: false              });            }          });          const output = [{            cellDesing: 'normal1',            orientation: 'vertical',            defaultLayout: 'wide',            paging: '',            section: { sectionName: 'Search Results', separator: true },            layout: null,            data: data          }];          savedData.innerHTML = JSON.stringify(output);        } catch(e) { console.log(e); }"
+      },
+      "output": []
+    }
+  ],
+  "info": [],
+  "chapters": []
+}
