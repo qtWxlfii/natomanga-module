@@ -1,7 +1,7 @@
 {
   "moduleInfo": {
     "moduleName": "NatoManga",
-    "moduleDesc": "Read manga from natomanga.com",
+    "moduleDesc": "Unofficial module to read manga from natomanga.com",
     "developer": "qtWxlfii",
     "moduleID": "natomanga001",
     "moduleImage": "https://www.natomanga.com/favicon.ico",
@@ -20,32 +20,27 @@
       "javascriptConfig": {
         "removeJavascript": true,
         "loadInWebView": false,
-        "javaScript": "try {
-  const savedData = document.getElementById('ketsu-final-data');
-  const parsedJson = JSON.parse(savedData.innerHTML);
-  const empty = [{ key: '', value: '' }];
-  const items = document.querySelectorAll('.slide .item');
-  const data = [];
-  items.forEach(item => {
-    const img = item.querySelector('img').src;
-    const titleEl = item.querySelector('.slide-caption h3 a');
-    const title = titleEl?.innerText?.trim();
-    const link = titleEl?.href;
-    data.push({
-      image: { url: img, method: 'get', headers: empty, httpBody: null },
-      title,
-      link: { url: link, method: 'get', headers: empty, httpBody: null },
-      isChapter: false
-    });
-  });
-  const final = { data, layout: null, paging: '', section: { sectionName: 'Popular Manga', separator: true }, orientation: 'vertical', defaultLayout: 'wide', cellDesing: 'normal1' };
-  savedData.innerHTML = JSON.stringify({ request: parsedJson.request, extra: parsedJson.extra, javascriptConfig: parsedJson.javascriptConfig, output: [final] });
-} catch (e) { console.error(e.message); }"
+        "javaScript": "try {          const savedData = document.getElementById('ketsu-final-data');          const parsedJson = JSON.parse(savedData.innerHTML);          const items = document.querySelectorAll('.slide .item');          const empty = [{ key: '', value: '' }];          const data = [];          items.forEach(item => {            const img = item.querySelector('img')?.src;            const titleEl = item.querySelector('.slide-caption h3 a');            const title = titleEl?.innerText?.trim();            const link = titleEl?.href;            if (title && img && link) {              data.push({                image: { url: img, method: 'get', headers: empty, httpBody: null },                title: title,                link: { url: link, method: 'get', headers: empty, httpBody: null },                description: '', field1: '', field2: '', field3: '', field4: '', isChapter: false              });            }          });          const output = [{            cellDesing: 'normal1',            orientation: 'vertical',            defaultLayout: 'wide',            paging: '',            section: { sectionName: 'Popular Manga', separator: true },            layout: null,            data: data          }];          savedData.innerHTML = JSON.stringify(output);        } catch(e) { console.log(e); }"
       },
       "output": []
     }
   ],
-  "search": [],
+  "search": [
+    {
+      "request": {
+        "url": "https://www.natomanga.com/search?keyword=<searched>",
+        "method": "get",
+        "headers": []
+      },
+      "separator": "+",
+      "javascriptConfig": {
+        "removeJavascript": true,
+        "loadInWebView": false,
+        "javaScript": "try {          const savedData = document.getElementById('ketsu-final-data');          const parsedJson = JSON.parse(savedData.innerHTML);          const items = document.querySelectorAll('.panel-search-story .story_item');          const empty = [{ key: '', value: '' }];          const data = [];          items.forEach(item => {            const img = item.querySelector('img')?.src;            const titleEl = item.querySelector('.story_name a');            const title = titleEl?.innerText?.trim();            const link = titleEl?.href;            if (title && img && link) {              data.push({                image: { url: img, method: 'get', headers: empty, httpBody: null },                title: title,                link: { url: link, method: 'get', headers: empty, httpBody: null },                description: '', field1: '', field2: '', field3: '', field4: '', isChapter: false              });            }          });          const output = [{            cellDesing: 'normal1',            orientation: 'vertical',            defaultLayout: 'wide',            paging: '',            section: { sectionName: 'Search Results', separator: true },            layout: null,            data: data          }];          savedData.innerHTML = JSON.stringify(output);        } catch(e) { console.log(e); }"
+      },
+      "output": []
+    }
+  ],
   "info": [],
   "chapters": []
 }
