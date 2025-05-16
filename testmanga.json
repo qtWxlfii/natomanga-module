@@ -1,0 +1,31 @@
+{
+  "moduleInfo": {
+    "moduleName": "TestManga",
+    "moduleDesc": "Test module to verify JSON structure in Ketsu iOS",
+    "developer": "qtWxlfii",
+    "moduleID": "testmanga001",
+    "moduleImage": "https://www.natomanga.com/favicon.ico",
+    "moduleVersion": 1.0,
+    "moduleLenguage": "ENG",
+    "moduleType": "Manga",
+    "baseURL": "https://example.com"
+  },
+  "mainPage": [
+    {
+      "request": {
+        "url": "https://example.com",
+        "method": "get",
+        "headers": []
+      },
+      "javascriptConfig": {
+        "removeJavascript": true,
+        "loadInWebView": false,
+        "javaScript": "try { const savedData = document.getElementById('ketsu-final-data'); const data = [{ image: { url: 'https://i.imgur.com/Ue6Q2lC.jpeg', method: 'get', headers: [], httpBody: null }, title: 'Test Manga', description: 'Test Description', field1: 'Ongoing', field2: '', field3: '', field4: '', isChapter: false, link: { url: 'https://example.com/manga/test', method: 'get', headers: [], httpBody: null } }]; const output = [{ cellDesing: 'normal1', orientation: 'vertical', defaultLayout: '...
+      },
+      "output": []
+    }
+  ],
+  "search": [],
+  "info": [],
+  "chapters": []
+}
