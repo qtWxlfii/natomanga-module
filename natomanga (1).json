@@ -1,0 +1,17 @@
+{
+  "moduleInfo": {
+    "moduleName": "NatoManga",
+    "moduleDesc": "Read manga from natomanga.com",
+    "developer": "qtWxlfii",
+    "moduleID": "natomanga001",
+    "moduleImage": "https://www.natomanga.com/favicon.ico",
+    "moduleVersion": 1.0,
+    "moduleLenguage": "ENG",
+    "moduleType": "Manga",
+    "baseURL": "https://www.natomanga.com"
+  },
+  "mainPage": [...],
+  "search": [...],
+  "info": [],
+  "chapters": []
+}
